@@ -83,8 +83,7 @@ Source: [`programs/candle-rush/src/lib.rs`](programs/candle-rush/src/lib.rs). Th
 
 Tools: Rust, Solana CLI, Anchor 1.0.2, Node 22. With platform tools v1.52, build with
 `cargo-build-sbf --tools-version v1.52 --arch v0` and `anchor idl build` instead of `anchor build`.
-If Cargo resolves newer Solana crates than Anchor 1.0.2 expects, reuse the `Cargo.lock` from
-MagicBlock's `roll-dice` example.
+Keep the committed `Cargo.lock`: it pins the Solana crates that Anchor 1.0.2 expects.
 
 ```bash
 anchor build
