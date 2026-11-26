@@ -1,0 +1,1068 @@
+{
+  "address": "HR8gLWnhgJuMMwGdv5UcyWHRHxifpKzwk1shMDGgQwJN",
+  "metadata": {
+    "name": "candle_rush",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Call the next SOL/USD move on a MagicBlock Ephemeral Rollup; streaks open VRF loot"
+  },
+  "instructions": [
+    {
+      "name": "call",
+      "docs": [
+        "Ephemeral Rollup: calls the next move. Snapshots the oracle price as the entry."
+      ],
+      "discriminator": [
+        181,
+        94,
+        56,
+        161,
+        194,
+        221,
+        200,
+        3
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "signer": true
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "price_feed"
+        }
+      ],
+      "args": [
+        {
+          "name": "direction",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "commit_arena",
+      "docs": [
+        "Ephemeral Rollup: anyone can checkpoint the arena to Solana."
+      ],
+      "discriminator": [
+        219,
+        190,
+        95,
+        171,
+        235,
+        130,
+        112,
+        250
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "magic_program",
+          "address": "Magic11111111111111111111111111111111111111"
+        },
+        {
+          "name": "magic_context",
+          "writable": true,
+          "address": "MagicContext1111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "delegate_arena",
+      "docs": [
+        "Base layer, once: hands the arena to the Ephemeral Rollup."
+      ],
+      "discriminator": [
+        216,
+        55,
+        214,
+        212,
+        195,
+        162,
+        39,
+        100
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "buffer_arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  117,
+                  102,
+                  102,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "arena"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                243,
+                233,
+                156,
+                173,
+                159,
+                29,
+                247,
+                211,
+                255,
+                243,
+                196,
+                12,
+                150,
+                98,
+                144,
+                208,
+                253,
+                39,
+                13,
+                143,
+                155,
+                57,
+                13,
+                183,
+                5,
+                162,
+                169,
+                91,
+                235,
+                37,
+                149,
+                239
+              ]
+            }
+          }
+        },
+        {
+          "name": "delegation_record_arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  108,
+                  101,
+                  103,
+                  97,
+                  116,
+                  105,
+                  111,
+                  110
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "arena"
+              }
+            ],
+            "program": {
+              "kind": "account",
+              "path": "delegation_program"
+            }
+          }
+        },
+        {
+          "name": "delegation_metadata_arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  100,
+                  101,
+                  108,
+                  101,
+                  103,
+                  97,
+                  116,
+                  105,
+                  111,
+                  110,
+                  45,
+                  109,
+                  101,
+                  116,
+                  97,
+                  100,
+                  97,
+                  116,
+                  97
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "arena"
+              }
+            ],
+            "program": {
+              "kind": "account",
+              "path": "delegation_program"
+            }
+          }
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "owner_program",
+          "address": "HR8gLWnhgJuMMwGdv5UcyWHRHxifpKzwk1shMDGgQwJN"
+        },
+        {
+          "name": "delegation_program",
+          "address": "DELeGGvXpWV2fqJUhqcF5ZSYMS4JTLjteaAMARRSaeSh"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "init_arena",
+      "docs": [
+        "Base layer, once: creates the shared arena. The signer becomes its authority."
+      ],
+      "discriminator": [
+        24,
+        246,
+        252,
+        176,
+        155,
+        175,
+        123,
+        124
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "join",
+      "docs": [
+        "Ephemeral Rollup: takes a seat (no-op if the player already has one). When the arena is",
+        "full, the seat idle the longest (at least 15 minutes) goes to the newcomer."
+      ],
+      "discriminator": [
+        206,
+        55,
+        2,
+        106,
+        113,
+        220,
+        17,
+        163
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "signer": true
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "loot_callback",
+      "docs": [
+        "VRF callback: turns the randomness into a card. Longer best streaks roll rarer cards."
+      ],
+      "discriminator": [
+        22,
+        232,
+        75,
+        122,
+        143,
+        186,
+        121,
+        137
+      ],
+      "accounts": [
+        {
+          "name": "vrf_program_identity",
+          "docs": [
+            "Scoped VRF identity PDA, bound to this program. Its presence as a signer proves",
+            "the callback was issued by the VRF program for this program."
+          ],
+          "signer": true
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "randomness",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "slot_index",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "open_loot",
+      "docs": [
+        "Ephemeral Rollup: opens one loot candle by requesting VRF randomness."
+      ],
+      "discriminator": [
+        125,
+        69,
+        93,
+        52,
+        19,
+        59,
+        111,
+        246
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "oracle_queue",
+          "writable": true,
+          "address": "5hBR571xnXppuCPveTrctfTU7tJLSN94nq7kv7FRK5Tc"
+        },
+        {
+          "name": "program_identity",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  105,
+                  100,
+                  101,
+                  110,
+                  116,
+                  105,
+                  116,
+                  121
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "vrf_program",
+          "address": "Vrf1RNUjXmQGjmQrQLvJHs9SNkvDJEsRVFPkfSQUwGz"
+        },
+        {
+          "name": "slot_hashes",
+          "address": "SysvarS1otHashes111111111111111111111111111"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "client_seed",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "process_undelegation",
+      "discriminator": [
+        196,
+        28,
+        41,
+        206,
+        48,
+        37,
+        51,
+        167
+      ],
+      "accounts": [
+        {
+          "name": "base_account",
+          "writable": true
+        },
+        {
+          "name": "buffer",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  117,
+                  110,
+                  100,
+                  101,
+                  108,
+                  101,
+                  103,
+                  97,
+                  116,
+                  101,
+                  45,
+                  98,
+                  117,
+                  102,
+                  102,
+                  101,
+                  114
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "base_account"
+              }
+            ],
+            "program": {
+              "kind": "const",
+              "value": [
+                181,
+                183,
+                0,
+                225,
+                242,
+                87,
+                58,
+                192,
+                204,
+                6,
+                34,
+                1,
+                52,
+                74,
+                207,
+                151,
+                184,
+                53,
+                6,
+                235,
+                140,
+                229,
+                25,
+                152,
+                204,
+                98,
+                126,
+                24,
+                147,
+                128,
+                167,
+                62
+              ]
+            }
+          }
+        },
+        {
+          "name": "payer",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "account_seeds",
+          "type": {
+            "vec": "bytes"
+          }
+        }
+      ]
+    },
+    {
+      "name": "settle",
+      "docs": [
+        "Ephemeral Rollup: settles the open call once the round is over and a newer price exists."
+      ],
+      "discriminator": [
+        175,
+        42,
+        185,
+        87,
+        144,
+        131,
+        102,
+        212
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "signer": true
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "price_feed"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "undelegate_arena",
+      "docs": [
+        "Ephemeral Rollup, authority only: commits and returns the arena to Solana."
+      ],
+      "discriminator": [
+        202,
+        85,
+        24,
+        150,
+        49,
+        125,
+        12,
+        24
+      ],
+      "accounts": [
+        {
+          "name": "payer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "magic_program",
+          "address": "Magic11111111111111111111111111111111111111"
+        },
+        {
+          "name": "magic_context",
+          "writable": true,
+          "address": "MagicContext1111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "use_card",
+      "docs": [
+        "Ephemeral Rollup: plays a perk card from the player's hand."
+      ],
+      "discriminator": [
+        2,
+        171,
+        90,
+        122,
+        64,
+        48,
+        23,
+        145
+      ],
+      "accounts": [
+        {
+          "name": "player",
+          "signer": true
+        },
+        {
+          "name": "arena",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  97,
+                  114,
+                  101,
+                  110,
+                  97,
+                  45,
+                  118,
+                  49
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "card",
+          "type": "u8"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Arena",
+      "discriminator": [
+        243,
+        215,
+        44,
+        44,
+        231,
+        211,
+        232,
+        168
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "ArenaFull",
+      "msg": "The arena is full"
+    },
+    {
+      "code": 6001,
+      "name": "NotJoined",
+      "msg": "Join the arena first"
+    },
+    {
+      "code": 6002,
+      "name": "BadDirection",
+      "msg": "Direction must be 1 (up) or 2 (down)"
+    },
+    {
+      "code": 6003,
+      "name": "CallAlreadyOpen",
+      "msg": "You already have an open call"
+    },
+    {
+      "code": 6004,
+      "name": "NoOpenCall",
+      "msg": "No open call to settle"
+    },
+    {
+      "code": 6005,
+      "name": "RoundNotOver",
+      "msg": "The round is not over yet"
+    },
+    {
+      "code": 6006,
+      "name": "NoNewPrice",
+      "msg": "Waiting for a newer oracle price"
+    },
+    {
+      "code": 6007,
+      "name": "WrongFeed",
+      "msg": "Wrong price feed"
+    },
+    {
+      "code": 6008,
+      "name": "BadFeed",
+      "msg": "Price feed data is not recognized"
+    },
+    {
+      "code": 6009,
+      "name": "StalePrice",
+      "msg": "Oracle price is too old"
+    },
+    {
+      "code": 6010,
+      "name": "NoLoot",
+      "msg": "No loot candle to open"
+    },
+    {
+      "code": 6011,
+      "name": "LootPending",
+      "msg": "A loot candle is already opening"
+    },
+    {
+      "code": 6012,
+      "name": "BadSlot",
+      "msg": "Bad slot index"
+    },
+    {
+      "code": 6013,
+      "name": "BadCard",
+      "msg": "Unknown card"
+    },
+    {
+      "code": 6014,
+      "name": "NoSuchCard",
+      "msg": "You don't have that card"
+    },
+    {
+      "code": 6015,
+      "name": "NotAPerk",
+      "msg": "That card pays out on its own and can't be played"
+    },
+    {
+      "code": 6016,
+      "name": "NotAuthority",
+      "msg": "Only the arena authority can do this"
+    }
+  ],
+  "types": [
+    {
+      "name": "Arena",
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "round_secs",
+            "type": "i64"
+          },
+          {
+            "name": "total_calls",
+            "type": "u64"
+          },
+          {
+            "name": "players",
+            "type": "u16"
+          },
+          {
+            "name": "padding",
+            "type": {
+              "array": [
+                "u8",
+                6
+              ]
+            }
+          },
+          {
+            "name": "slots",
+            "type": {
+              "array": [
+                {
+                  "defined": {
+                    "name": "Slot"
+                  }
+                },
+                64
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Slot",
+      "docs": [
+        "One player's seat. Fields are ordered so the C layout has no hidden padding (112 bytes)."
+      ],
+      "serialization": "bytemuck",
+      "repr": {
+        "kind": "c"
+      },
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "points",
+            "type": "u64"
+          },
+          {
+            "name": "entry_price",
+            "type": "i64"
+          },
+          {
+            "name": "entry_publish_time",
+            "type": "i64"
+          },
+          {
+            "name": "entry_ts",
+            "type": "i64"
+          },
+          {
+            "name": "last_settle_price",
+            "type": "i64"
+          },
+          {
+            "name": "last_ts",
+            "type": "i64"
+          },
+          {
+            "name": "calls",
+            "type": "u32"
+          },
+          {
+            "name": "wins",
+            "type": "u32"
+          },
+          {
+            "name": "streak",
+            "type": "u16"
+          },
+          {
+            "name": "best",
+            "type": "u16"
+          },
+          {
+            "name": "open",
+            "docs": [
+              "0 = no open call, 1 = up, 2 = down."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "last_result",
+            "type": "u8"
+          },
+          {
+            "name": "loot_ready",
+            "type": "u8"
+          },
+          {
+            "name": "loot_pending",
+            "type": "u8"
+          },
+          {
+            "name": "last_card",
+            "type": "u8"
+          },
+          {
+            "name": "boost",
+            "docs": [
+              "Points multiplier for the next win (1 = none)."
+            ],
+            "type": "u8"
+          },
+          {
+            "name": "shield",
+            "type": "u8"
+          },
+          {
+            "name": "cards",
+            "type": {
+              "array": [
+                "u8",
+                6
+              ]
+            }
+          },
+          {
+            "name": "padding",
+            "type": {
+              "array": [
+                "u8",
+                7
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
