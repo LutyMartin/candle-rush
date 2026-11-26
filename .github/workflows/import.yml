@@ -1,0 +1,23 @@
+name: Import snapshot
+on:
+  push:
+    branches: [main]
+    paths: ["snapshot.tgz.b64"]
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unpack the verified snapshot and commit it
+        run: |
+          base64 -d snapshot.tgz.b64 > /tmp/snapshot.tgz
+          echo "f8b2e9b7940f5dcfe6f9184b2403ae91d3e6ae119f6e02ffc67d82933f465647  /tmp/snapshot.tgz" | sha256sum -c -
+          git rm -q snapshot.tgz.b64
+          tar -xzf /tmp/snapshot.tgz
+          git config user.name LutyMartin
+          git config user.email 360829240+LutyMartin@users.noreply.github.com
+          git add -A
+          git commit -m "Candle Rush: price-call game on MagicBlock Ephemeral Rollups with VRF loot"
+          git push
